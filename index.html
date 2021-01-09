@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Urara</title>
+    <link rel="stylesheet" href="assets/css/urara.css">
+    
+
+
+</head>
+<body>
+    <!--It's just a concept, a chat UI design for direct messaging!
+Enjoy! : Don't forget to click the heart if you like it! -->
+
+<div class="container">
+    <div class="chatbox">
+      <div class="top-bar">
+        <div class="avatar"><p>U</p></div>
+        <div class="name">User</div>
+        <div class="icons">
+          <i class="fas fa-phone"></i>
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="menu">
+          <div class="dots"></div>
+        </div>
+        
+      </div>
+      <div class="middle">
+        <div class="user" id="user">
+          <div class="icons">
+            <div class="reload" ><p id="reload" href="#">&#x21bb;</p></div>
+          </div>
+
+          <!-- <div class="incoming">
+            <div class="bubble">Hey, Father's Day is coming up..</div>
+            
+          </div> -->
+
+          <!-- <div class="button">
+            <div class="bubble">Hello A </div>
+            <div class="bubble">Hello B </div>
+          </div> -->
+          
+          <!-- <div class="outgoing">
+            <div class="bubble lower">Nah, it's cool.</div>
+            <div class="bubble">Well you should get your Dad a cologne. Here smell it. Oh wait! ...</div>
+          </div> -->
+              
+           
+          <!-- <div class="typing">
+            <div class="bubble">
+              <div class="ellipsis one"></div>
+              <div class="ellipsis two"></div>
+              <div class="ellipsis three"></div>
+            </div>
+          </div> -->
+        </div>
+        
+      </div>
+      <div class="bottom-bar" >
+        <div class="chat">
+          <input type="text" placeholder="Type a message..." />
+          <!-- <button type="submit"><i class="fas fa-paper-plane" ></i></button> -->
+        </div>
+      </div>
+    </div>
+    <div class="messages"></div>
+    <div class="profile">
+      <div class="avatar_big"><p></p></div>
+      <div class="name2">Urara<p class="email" style="color: #79C7C5;">Chatbot for BMC Remedy Queries</p></div>
+    </div>
+    
+    <!-- <ul class="people">
+      <li class="person focus">
+        <span class="title">Voldemort </span>
+        <span class="time">2:50pm</span><br>
+        <span class="preview">What are you getting... Oh, oops...</span>
+      </li>
+       <li class="person">
+        <span class="title">Ron</span>
+        <span class="time">2:25pm</span><br>
+        <span class="preview">Meet me at Hogsmeade and bring...</span>
+      </li>
+      <li class="person">
+        <span class="title">Hermione</span>
+        <span class="time">2:12pm</span><br>
+        <span class="preview">Have you and Ron done your hom...</span>
+      </li>
+    </ul> -->
+  </div>
+<!--   
+  <footer>
+    <p>made by <a href="https://codepen.io/juliepark"> julie</a> ♡
+  </footer>
+</body> -->
+
+<script>
+    var user=document.getElementById("user")
+
+    var callServer=(value)=>{
+      createOutgoing(value)
+      console.log(value)
+    }
+
+    var createOptionButton=(option)=>{
+      return "<button class='bubble' name='"+option+"' onclick='callServer(this.name)' style='color:#2c2b2b;'> "+ option + "</button>"
+    }
+
+    var createIncoming=(question,options)=>{
+        let incoming_html_question= "<div class='incoming'><div class='bubble'> "+ question + "</div> </div>";
+        user.innerHTML+=(incoming_html_question)
+        let buttons="<div class='button'>"
+        for(option of options){
+            buttons+=createOptionButton(option)
+        }
+        buttons+="</div>"
+        user.innerHTML+=buttons
+    }
+
+    var createOutgoing=(answer)=>{
+      let outgoing_html_answer= "<div class='outgoing'><div class='bubble'>"+ answer+ "</div> </div>";
+      user.innerHTML+=outgoing_html_answer
+      // createIncoming("Hey, I'm Urara , the BMC ticket bot , How can I help you today ?",["Option A","Option B","Option C"])
+
+    }
+
+    window.onload =()=>{
+      createIncoming("Hey, I'm Urara , the BMC ticket bot , How can I help you today ?",["Option A","Option B","Option C"])
+      // createIncoming("")
+
+    }
+    
+    let reload=document.getElementById("reload")
+    reload.onclick= (e)=>{
+      console.log("Clicckedd")
+      location.reload()
+        console.log("clicked")
+    }
+
+
+</script>
+</html>
